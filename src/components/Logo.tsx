@@ -1,6 +1,9 @@
+type Tone = "default" | "light";
+
 type LogoProps = {
   className?: string;
   markSize?: number;
+  tone?: Tone;
 };
 
 // Regular heptagon vertices (7 points), top-centered.
@@ -27,7 +30,8 @@ for (let i = 0; i < SIDES; i++) {
 
 const polygonPoints = points.map((p) => `${p.x},${p.y}`).join(" ");
 
-export function HeptagonMark({ size = 28 }: { size?: number }) {
+export function HeptagonMark({ size = 28, tone = "default" }: { size?: number; tone?: Tone }) {
+  const outline = tone === "light" ? "var(--ink-foreground)" : "var(--ink)";
   return (
     <svg
       width={size}
@@ -49,10 +53,10 @@ export function HeptagonMark({ size = 28 }: { size?: number }) {
           strokeWidth={2}
         />
       ))}
-      {/* Black outline */}
+      {/* Border */}
       <polygon
         points={polygonPoints}
-        stroke="var(--ink)"
+        stroke={outline}
         strokeWidth={4}
         strokeLinejoin="round"
         fill="none"
@@ -61,12 +65,12 @@ export function HeptagonMark({ size = 28 }: { size?: number }) {
   );
 }
 
-export function Logo({ className = "", markSize = 28 }: LogoProps) {
+export function Logo({ className = "", markSize = 28, tone = "default" }: LogoProps) {
   return (
     <span className={`flex items-center gap-2 font-bold tracking-tight ${className}`}>
-      <HeptagonMark size={markSize} />
+      <HeptagonMark size={markSize} tone={tone} />
       <span className="flex items-center">
-        <span className="text-foreground">3</span>
+        <span className={tone === "light" ? "text-ink-foreground" : "text-foreground"}>3</span>
         <span className="text-violet">pix</span>
       </span>
     </span>
