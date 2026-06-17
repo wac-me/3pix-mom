@@ -30,7 +30,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
         {post.excerpt && (
           <p className="text-sm text-muted-foreground line-clamp-3">{post.excerpt}</p>
         )}
-        <span className="mt-auto pt-3 text-sm font-bold text-primary">
+        <span className="mt-auto pt-3 text-sm font-bold text-foreground">
           Czytaj dalej →
         </span>
       </div>
