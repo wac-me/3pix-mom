@@ -35,10 +35,10 @@ function BlogPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <section className="border-b-2 border-ink bg-yellow">
+      <section className="border-b-2 border-ink bg-muted">
         <div className="mx-auto max-w-6xl px-4 py-14">
-          <h1 className="text-4xl font-bold text-yellow-foreground md:text-5xl">Blog</h1>
-          <p className="mt-3 max-w-xl text-yellow-foreground/80">
+          <h1 className="text-4xl font-bold text-foreground md:text-5xl">Blog</h1>
+          <p className="mt-3 max-w-xl text-muted-foreground">
             Najnowsze wpisy, case studies i przemyślenia zespołu 3pix.
           </p>
         </div>

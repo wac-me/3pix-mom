@@ -47,12 +47,12 @@ function ContactPage() {
   return (
     <div className="flex min-h-screen flex-col">
       <Navbar />
-      <section className="border-b-2 border-ink bg-teal">
+      <section className="border-b-2 border-ink bg-muted">
         <div className="mx-auto max-w-6xl px-4 py-14">
-          <h1 className="text-4xl font-bold text-teal-foreground md:text-5xl">
+          <h1 className="text-4xl font-bold text-foreground md:text-5xl">
             Porozmawiajmy
           </h1>
-          <p className="mt-3 max-w-xl text-teal-foreground/80">
+          <p className="mt-3 max-w-xl text-muted-foreground">
             Masz pomysł? My mamy narzędzia, by go zrealizować.
           </p>
         </div>
@@ -95,7 +95,7 @@ function ContactPage() {
                 key={d.label}
                 className="flex items-center gap-4 rounded-2xl border-2 border-ink bg-card p-5 shadow-flat-sm"
               >
-                <div className="flex size-12 items-center justify-center rounded-xl border-2 border-ink bg-coral text-coral-foreground">
+                <div className="flex size-12 items-center justify-center text-foreground">
                   <d.icon className="size-6" />
                 </div>
                 <div>
@@ -104,9 +104,9 @@ function ContactPage() {
                 </div>
               </div>
             ))}
-            <div className="rounded-2xl border-2 border-ink bg-violet p-6 text-violet-foreground shadow-flat-sm">
+            <div className="rounded-2xl border-2 border-ink bg-muted p-6 text-foreground shadow-flat-sm">
               <h3 className="text-xl font-bold">Godziny pracy</h3>
-              <p className="mt-2 text-violet-foreground/90">
+              <p className="mt-2 text-muted-foreground">
                 Pon – Pt: 9:00 – 18:00
                 <br />
                 Weekend: tylko pilne sprawy

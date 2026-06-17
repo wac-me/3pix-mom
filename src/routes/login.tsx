@@ -52,7 +52,7 @@ function LoginPage() {
         <div className="w-full max-w-md rounded-3xl border-2 border-ink bg-card p-8 shadow-flat">
           <div className="flex items-center gap-1 text-3xl font-bold">
             <span>3</span>
-            <span className="text-primary">pix</span>
+            <span className="text-foreground">pix</span>
           </div>
           <h1 className="mt-4 text-2xl font-bold">Zaloguj się</h1>
           <p className="mt-1 text-sm text-muted-foreground">

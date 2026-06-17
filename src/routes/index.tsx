@@ -28,10 +28,10 @@ export const Route = createFileRoute("/")({
 });
 
 const services = [
-  { icon: Palette, title: "Design & Branding", desc: "Tożsamości wizualne i interfejsy, które zapadają w pamięć.", color: "bg-coral text-coral-foreground" },
-  { icon: Code2, title: "Web Development", desc: "Szybkie, skalowalne strony i aplikacje webowe.", color: "bg-teal text-teal-foreground" },
-  { icon: Sparkles, title: "Motion & 3D", desc: "Animacje i mikrointerakcje, które ożywiają produkt.", color: "bg-violet text-violet-foreground" },
-  { icon: Rocket, title: "Strategia", desc: "Od pomysłu do wdrożenia — prowadzimy za rękę.", color: "bg-yellow text-yellow-foreground" },
+  { icon: Palette, title: "Design & Branding", desc: "Tożsamości wizualne i interfejsy, które zapadają w pamięć." },
+  { icon: Code2, title: "Web Development", desc: "Szybkie, skalowalne strony i aplikacje webowe." },
+  { icon: Sparkles, title: "Motion & 3D", desc: "Animacje i mikrointerakcje, które ożywiają produkt." },
+  { icon: Rocket, title: "Strategia", desc: "Od pomysłu do wdrożenia — prowadzimy za rękę." },
 ];
 
 function Index() {
@@ -50,12 +50,12 @@ function Index() {
       <section className="border-b-2 border-ink bg-background">
         <div className="mx-auto grid max-w-6xl items-center gap-10 px-4 py-16 md:grid-cols-2 md:py-24">
           <div>
-            <span className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-yellow px-4 py-1.5 text-sm font-bold text-yellow-foreground">
+            <span className="inline-flex items-center gap-2 rounded-full border-2 border-ink bg-muted px-4 py-1.5 text-sm font-bold text-foreground">
               <Sparkles className="size-4" /> Interaktywna agencja kreatywna
             </span>
             <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-6xl">
               Tworzymy cyfrowe
-              <span className="text-primary"> do świadczenia</span>, które działają.
+              <span className="text-foreground"> do świadczenia</span>, które działają.
             </h1>
             <p className="mt-5 max-w-md text-lg text-muted-foreground">
               W 3pix łączymy odważny design, czysty kod i ruch. Budujemy marki,
@@ -90,7 +90,7 @@ function Index() {
                 key={s.title}
                 className="rounded-2xl border-2 border-ink bg-card p-6 shadow-flat-sm"
               >
-                <div className={`flex size-12 items-center justify-center rounded-xl border-2 border-ink ${s.color}`}>
+                <div className="flex size-12 items-center justify-center text-foreground">
                   <s.icon className="size-6" />
                 </div>
                 <h3 className="mt-4 text-lg font-bold">{s.title}</h3>

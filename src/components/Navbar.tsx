@@ -25,8 +25,8 @@ export function Navbar() {
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link to="/" className="flex items-center gap-1 text-2xl font-bold tracking-tight">
           <span className="text-foreground">3</span>
-          <span className="text-primary">pix</span>
-          <span className="ml-1 inline-block h-2 w-2 translate-y-1 rounded-full bg-secondary" />
+          <span className="text-foreground">pix</span>
+          <span className="ml-1 inline-block h-2 w-2 translate-y-1 rounded-full bg-foreground" />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">
@@ -34,8 +34,8 @@ export function Navbar() {
             <Link
               key={l.to}
               to={l.to}
-              className="text-sm font-semibold text-foreground transition-colors hover:text-primary"
-              activeProps={{ className: "text-primary" }}
+              className="text-sm font-semibold text-foreground transition-colors hover:text-muted-foreground"
+              activeProps={{ className: "text-muted-foreground" }}
               activeOptions={{ exact: l.to === "/" }}
             >
               {l.label}
@@ -75,7 +75,7 @@ export function Navbar() {
                 to={l.to}
                 className="text-sm font-semibold"
                 onClick={() => setOpen(false)}
-                activeProps={{ className: "text-primary" }}
+                activeProps={{ className: "text-muted-foreground" }}
                 activeOptions={{ exact: l.to === "/" }}
               >
                 {l.label}
@@ -91,7 +91,7 @@ export function Navbar() {
                 </button>
               </>
             ) : (
-              <Link to="/login" className="text-sm font-semibold text-primary" onClick={() => setOpen(false)}>
+              <Link to="/login" className="text-sm font-semibold text-foreground" onClick={() => setOpen(false)}>
                 Zaloguj
               </Link>
             )}

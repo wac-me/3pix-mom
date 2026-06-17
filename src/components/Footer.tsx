@@ -7,7 +7,7 @@ export function Footer() {
         <div className="sm:col-span-2">
           <div className="flex items-center gap-1 text-3xl font-bold">
             <span>3</span>
-            <span className="text-primary">pix</span>
+            <span className="text-foreground">pix</span>
           </div>
           <p className="mt-3 max-w-xs text-sm text-ink-foreground/70">
             Interaktywna agencja kreatywna. Projektujemy, kodujemy i ożywiamy marki.
@@ -16,10 +16,10 @@ export function Footer() {
         <div>
           <h4 className="text-sm font-bold uppercase tracking-wide">Menu</h4>
           <ul className="mt-3 space-y-2 text-sm text-ink-foreground/70">
-            <li><Link to="/" className="hover:text-primary">Start</Link></li>
-            <li><Link to="/blog" className="hover:text-primary">Blog</Link></li>
-            <li><Link to="/kontakt" className="hover:text-primary">Kontakt</Link></li>
-            <li><Link to="/login" className="hover:text-primary">Zaloguj</Link></li>
+            <li><Link to="/" className="hover:text-foreground/70">Start</Link></li>
+            <li><Link to="/blog" className="hover:text-foreground/70">Blog</Link></li>
+            <li><Link to="/kontakt" className="hover:text-foreground/70">Kontakt</Link></li>
+            <li><Link to="/login" className="hover:text-foreground/70">Zaloguj</Link></li>
           </ul>
         </div>
         <div>
