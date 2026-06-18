@@ -159,6 +159,67 @@ export function PostEditor({ post }: Props) {
         </div>
       </div>
 
+      <div className="grid gap-2">
+        <Label>Grafika nagłówka kafelka</Label>
+        <p className="text-sm text-muted-foreground">
+          Opcjonalnie wgraj własną bitmapę. Gdy jest ustawiona, zastępuje kolor kafelka.
+        </p>
+        <div
+          className={`relative flex h-40 items-end overflow-hidden rounded-xl border-2 border-ink p-4 ${
+            coverImage ? "" : coverClass(coverColor)
+          }`}
+          style={
+            coverImage
+              ? {
+                  backgroundImage: `url(${coverImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }
+              : undefined
+          }
+        >
+          {tag && (
+            <span className="rounded-full border-2 border-ink bg-background px-3 py-1 text-xs font-bold text-foreground">
+              {tag}
+            </span>
+          )}
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleImagePick}
+        />
+        <div className="flex flex-wrap gap-2">
+          <Button
+            type="button"
+            variant="flat"
+            size="sm"
+            disabled={uploading}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {uploading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <ImagePlus className="size-4" />
+            )}
+            {coverImage ? "Zmień grafikę" : "Wgraj grafikę"}
+          </Button>
+          {coverImage && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setCoverImage(null)}
+            >
+              <Trash2 className="size-4" /> Usuń grafikę
+            </Button>
+          )}
+        </div>
+      </div>
+
+
       <div className="flex items-center justify-between rounded-xl border-2 border-ink bg-muted px-4 py-3">
         <div>
           <p className="font-semibold">Opublikowany</p>
