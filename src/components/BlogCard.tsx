@@ -16,14 +16,25 @@ export function BlogCard({ post }: { post: BlogPost }) {
       params={{ id: post.id }}
       className="group flex flex-col overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-flat-sm transition-transform hover:-translate-y-1"
     >
-      <div className={`relative flex h-44 items-end p-5 ${coverClass(post.cover_color)}`}>
+      <div
+        className={`relative flex h-44 items-end p-5 ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
+        style={
+          post.cover_image
+            ? {
+                backgroundImage: `url(${post.cover_image})`,
+                backgroundSize: "cover",
+                backgroundPosition: "center",
+              }
+            : undefined
+        }
+      >
         {post.tag && (
           <span className="absolute left-5 top-5 rounded-full border-2 border-ink bg-background px-3 py-1 text-xs font-bold text-foreground">
             {post.tag}
           </span>
         )}
         <ArrowUpRight className="absolute right-5 top-5 size-7 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
-        <span className="text-sm font-semibold opacity-90">{date}</span>
+        <span className={`text-sm font-semibold ${post.cover_image ? "rounded-full bg-background/80 px-2 py-0.5 text-foreground" : "opacity-90"}`}>{date}</span>
       </div>
       <div className="flex flex-1 flex-col gap-2 p-5">
         <h3 className="text-lg font-bold leading-snug">{post.title}</h3>

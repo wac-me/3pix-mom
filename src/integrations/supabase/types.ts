@@ -19,6 +19,7 @@ export type Database = {
           author_id: string | null
           content: string
           cover_color: string
+          cover_image: string | null
           created_at: string
           excerpt: string | null
           id: string
@@ -31,6 +32,7 @@ export type Database = {
           author_id?: string | null
           content?: string
           cover_color?: string
+          cover_image?: string | null
           created_at?: string
           excerpt?: string | null
           id?: string
@@ -43,6 +45,7 @@ export type Database = {
           author_id?: string | null
           content?: string
           cover_color?: string
+          cover_image?: string | null
           created_at?: string
           excerpt?: string | null
           id?: string

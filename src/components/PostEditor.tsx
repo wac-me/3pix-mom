@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
+import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,8 +10,10 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import {
   COVER_COLORS,
+  coverClass,
   createPost,
   updatePost,
+  uploadCoverImage,
   type BlogPost,
 } from "@/lib/posts";
 
@@ -22,14 +25,42 @@ export function PostEditor({ post }: Props) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const isEdit = Boolean(post);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [title, setTitle] = useState(post?.title ?? "");
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
   const [content, setContent] = useState(post?.content ?? "");
   const [tag, setTag] = useState(post?.tag ?? "");
   const [coverColor, setCoverColor] = useState(post?.cover_color ?? "coral");
+  const [coverImage, setCoverImage] = useState<string | null>(post?.cover_image ?? null);
+  const [uploading, setUploading] = useState(false);
   const [published, setPublished] = useState(post?.published ?? true);
   const [saving, setSaving] = useState(false);
+
+  const handleImagePick = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("Wybierz plik graficzny.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Maksymalny rozmiar obrazka to 5 MB.");
+      return;
+    }
+    setUploading(true);
+    try {
+      const url = await uploadCoverImage(file);
+      setCoverImage(url);
+      toast.success("Obrazek wgrany.");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Nie udało się wgrać obrazka.");
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -41,6 +72,7 @@ export function PostEditor({ post }: Props) {
         content,
         tag: tag.trim() || null,
         cover_color: coverColor,
+        cover_image: coverImage,
         published,
       };
       if (isEdit && post) {
@@ -126,6 +158,67 @@ export function PostEditor({ post }: Props) {
           </div>
         </div>
       </div>
+
+      <div className="grid gap-2">
+        <Label>Grafika nagłówka kafelka</Label>
+        <p className="text-sm text-muted-foreground">
+          Opcjonalnie wgraj własną bitmapę. Gdy jest ustawiona, zastępuje kolor kafelka.
+        </p>
+        <div
+          className={`relative flex h-40 items-end overflow-hidden rounded-xl border-2 border-ink p-4 ${
+            coverImage ? "" : coverClass(coverColor)
+          }`}
+          style={
+            coverImage
+              ? {
+                  backgroundImage: `url(${coverImage})`,
+                  backgroundSize: "cover",
+                  backgroundPosition: "center",
+                }
+              : undefined
+          }
+        >
+          {tag && (
+            <span className="rounded-full border-2 border-ink bg-background px-3 py-1 text-xs font-bold text-foreground">
+              {tag}
+            </span>
+          )}
+        </div>
+        <input
+          ref={fileInputRef}
+          type="file"
+          accept="image/*"
+          className="hidden"
+          onChange={handleImagePick}
+        />
+        <div className="flex flex-wrap gap-2">
+          <Button
+            type="button"
+            variant="flat"
+            size="sm"
+            disabled={uploading}
+            onClick={() => fileInputRef.current?.click()}
+          >
+            {uploading ? (
+              <Loader2 className="size-4 animate-spin" />
+            ) : (
+              <ImagePlus className="size-4" />
+            )}
+            {coverImage ? "Zmień grafikę" : "Wgraj grafikę"}
+          </Button>
+          {coverImage && (
+            <Button
+              type="button"
+              variant="ghost"
+              size="sm"
+              onClick={() => setCoverImage(null)}
+            >
+              <Trash2 className="size-4" /> Usuń grafikę
+            </Button>
+          )}
+        </div>
+      </div>
+
 
       <div className="flex items-center justify-between rounded-xl border-2 border-ink bg-muted px-4 py-3">
         <div>

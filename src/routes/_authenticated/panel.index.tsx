@@ -103,7 +103,14 @@ function PanelPage() {
                   key={post.id}
                   className="flex flex-wrap items-center gap-4 rounded-2xl border-2 border-ink bg-card p-4 shadow-flat-sm"
                 >
-                  <div className={`size-14 shrink-0 rounded-xl border-2 border-ink ${coverClass(post.cover_color)}`} />
+                  <div
+                    className={`size-14 shrink-0 rounded-xl border-2 border-ink ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
+                    style={
+                      post.cover_image
+                        ? { backgroundImage: `url(${post.cover_image})`, backgroundSize: "cover", backgroundPosition: "center" }
+                        : undefined
+                    }
+                  />
                   <div className="min-w-0 flex-1">
                     <div className="flex items-center gap-2">
                       <h3 className="truncate font-bold">{post.title}</h3>
