@@ -1,4 +1,5 @@
 {
+  "_comment": "nie zmieniać - konfiguracja Vercel",
   "buildCommand": "npm run build",
   "outputDirectory": "dist/client",
   "framework": "vite",
