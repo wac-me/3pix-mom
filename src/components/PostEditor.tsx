@@ -72,6 +72,7 @@ export function PostEditor({ post }: Props) {
         content,
         tag: tag.trim() || null,
         cover_color: coverColor,
+        cover_image: coverImage,
         published,
       };
       if (isEdit && post) {
