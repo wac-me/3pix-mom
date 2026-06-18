@@ -82,17 +82,25 @@ export function Navbar() {
             ))}
             {user ? (
               <>
-                <Link to="/panel" className="text-sm font-semibold" onClick={() => setOpen(false)}>
-                  Panel
-                </Link>
-                <button className="text-left text-sm font-semibold" onClick={handleSignOut}>
+                <Button asChild variant="flat" size="sm" className="w-full">
+                  <Link to="/panel" onClick={() => setOpen(false)}>Panel</Link>
+                </Button>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="w-full"
+                  onClick={() => {
+                    setOpen(false);
+                    handleSignOut();
+                  }}
+                >
                   Wyloguj
-                </button>
+                </Button>
               </>
             ) : (
-              <Link to="/login" className="text-sm font-semibold text-foreground" onClick={() => setOpen(false)}>
-                Zaloguj
-              </Link>
+              <Button asChild variant="hero" size="sm" className="w-full">
+                <Link to="/login" onClick={() => setOpen(false)}>Zaloguj</Link>
+              </Button>
             )}
           </div>
         </div>
