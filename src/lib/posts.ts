@@ -18,6 +18,23 @@ export function coverClass(color: string) {
   );
 }
 
+const TEN_YEARS = 60 * 60 * 24 * 365 * 10;
+
+export async function uploadCoverImage(file: File): Promise<string> {
+  const ext = file.name.split(".").pop()?.toLowerCase() || "png";
+  const path = `${crypto.randomUUID()}.${ext}`;
+  const { error: uploadError } = await supabase.storage
+    .from("blog-covers")
+    .upload(path, file, { cacheControl: "31536000", upsert: false });
+  if (uploadError) throw uploadError;
+
+  const { data, error } = await supabase.storage
+    .from("blog-covers")
+    .createSignedUrl(path, TEN_YEARS);
+  if (error) throw error;
+  return data.signedUrl;
+}
+
 export async function fetchPosts(): Promise<BlogPost[]> {
   const { data, error } = await supabase
     .from("blog_posts")
