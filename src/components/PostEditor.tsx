@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { useRouter } from "@tanstack/react-router";
 import { useQueryClient } from "@tanstack/react-query";
+import { ImagePlus, Loader2, Trash2 } from "lucide-react";
 import { toast } from "sonner";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -9,8 +10,10 @@ import { Label } from "@/components/ui/label";
 import { Switch } from "@/components/ui/switch";
 import {
   COVER_COLORS,
+  coverClass,
   createPost,
   updatePost,
+  uploadCoverImage,
   type BlogPost,
 } from "@/lib/posts";
 
@@ -22,14 +25,42 @@ export function PostEditor({ post }: Props) {
   const router = useRouter();
   const queryClient = useQueryClient();
   const isEdit = Boolean(post);
+  const fileInputRef = useRef<HTMLInputElement>(null);
 
   const [title, setTitle] = useState(post?.title ?? "");
   const [excerpt, setExcerpt] = useState(post?.excerpt ?? "");
   const [content, setContent] = useState(post?.content ?? "");
   const [tag, setTag] = useState(post?.tag ?? "");
   const [coverColor, setCoverColor] = useState(post?.cover_color ?? "coral");
+  const [coverImage, setCoverImage] = useState<string | null>(post?.cover_image ?? null);
+  const [uploading, setUploading] = useState(false);
   const [published, setPublished] = useState(post?.published ?? true);
   const [saving, setSaving] = useState(false);
+
+  const handleImagePick = async (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (!file) return;
+    if (!file.type.startsWith("image/")) {
+      toast.error("Wybierz plik graficzny.");
+      return;
+    }
+    if (file.size > 5 * 1024 * 1024) {
+      toast.error("Maksymalny rozmiar obrazka to 5 MB.");
+      return;
+    }
+    setUploading(true);
+    try {
+      const url = await uploadCoverImage(file);
+      setCoverImage(url);
+      toast.success("Obrazek wgrany.");
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Nie udało się wgrać obrazka.");
+    } finally {
+      setUploading(false);
+      if (fileInputRef.current) fileInputRef.current.value = "";
+    }
+  };
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
