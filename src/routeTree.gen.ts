@@ -19,7 +19,6 @@ import { Route as BlogIndexRouteImport } from './routes/blog.index'
 import { Route as BlogIdRouteImport } from './routes/blog.$id'
 import { Route as AuthenticatedPanelRouteImport } from './routes/_authenticated/panel'
 import { Route as AuthenticatedPanelIndexRouteImport } from './routes/_authenticated/panel.index'
-import { Route as ApiPublicSeedUserRouteImport } from './routes/api/public/seed-user'
 import { Route as AuthenticatedPanelNewRouteImport } from './routes/_authenticated/panel.new'
 import { Route as AuthenticatedPanelIdRouteImport } from './routes/_authenticated/panel.$id'
 
@@ -72,11 +71,6 @@ const AuthenticatedPanelIndexRoute = AuthenticatedPanelIndexRouteImport.update({
   path: '/',
   getParentRoute: () => AuthenticatedPanelRoute,
 } as any)
-const ApiPublicSeedUserRoute = ApiPublicSeedUserRouteImport.update({
-  id: '/api/public/seed-user',
-  path: '/api/public/seed-user',
-  getParentRoute: () => rootRouteImport,
-} as any)
 const AuthenticatedPanelNewRoute = AuthenticatedPanelNewRouteImport.update({
   id: '/new',
   path: '/new',
@@ -99,7 +93,6 @@ export interface FileRoutesByFullPath {
   '/blog/': typeof BlogIndexRoute
   '/panel/$id': typeof AuthenticatedPanelIdRoute
   '/panel/new': typeof AuthenticatedPanelNewRoute
-  '/api/public/seed-user': typeof ApiPublicSeedUserRoute
   '/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesByTo {
@@ -111,7 +104,6 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogIndexRoute
   '/panel/$id': typeof AuthenticatedPanelIdRoute
   '/panel/new': typeof AuthenticatedPanelNewRoute
-  '/api/public/seed-user': typeof ApiPublicSeedUserRoute
   '/panel': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRoutesById {
@@ -127,7 +119,6 @@ export interface FileRoutesById {
   '/blog/': typeof BlogIndexRoute
   '/_authenticated/panel/$id': typeof AuthenticatedPanelIdRoute
   '/_authenticated/panel/new': typeof AuthenticatedPanelNewRoute
-  '/api/public/seed-user': typeof ApiPublicSeedUserRoute
   '/_authenticated/panel/': typeof AuthenticatedPanelIndexRoute
 }
 export interface FileRouteTypes {
@@ -143,7 +134,6 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/panel/$id'
     | '/panel/new'
-    | '/api/public/seed-user'
     | '/panel/'
   fileRoutesByTo: FileRoutesByTo
   to:
@@ -155,7 +145,6 @@ export interface FileRouteTypes {
     | '/blog'
     | '/panel/$id'
     | '/panel/new'
-    | '/api/public/seed-user'
     | '/panel'
   id:
     | '__root__'
@@ -170,7 +159,6 @@ export interface FileRouteTypes {
     | '/blog/'
     | '/_authenticated/panel/$id'
     | '/_authenticated/panel/new'
-    | '/api/public/seed-user'
     | '/_authenticated/panel/'
   fileRoutesById: FileRoutesById
 }
@@ -181,7 +169,6 @@ export interface RootRouteChildren {
   KontaktRoute: typeof KontaktRoute
   LoginRoute: typeof LoginRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
-  ApiPublicSeedUserRoute: typeof ApiPublicSeedUserRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -256,13 +243,6 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AuthenticatedPanelIndexRouteImport
       parentRoute: typeof AuthenticatedPanelRoute
     }
-    '/api/public/seed-user': {
-      id: '/api/public/seed-user'
-      path: '/api/public/seed-user'
-      fullPath: '/api/public/seed-user'
-      preLoaderRoute: typeof ApiPublicSeedUserRouteImport
-      parentRoute: typeof rootRouteImport
-    }
     '/_authenticated/panel/new': {
       id: '/_authenticated/panel/new'
       path: '/new'
@@ -325,8 +305,17 @@ const rootRouteChildren: RootRouteChildren = {
   KontaktRoute: KontaktRoute,
   LoginRoute: LoginRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
-  ApiPublicSeedUserRoute: ApiPublicSeedUserRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
   ._addFileTypes<FileRouteTypes>()
+
+import type { getRouter } from './router.tsx'
+import type { startInstance } from './start.ts'
+declare module '@tanstack/react-start' {
+  interface Register {
+    ssr: true
+    router: Awaited<ReturnType<typeof getRouter>>
+    config: Awaited<ReturnType<typeof startInstance.getOptions>>
+  }
+}
