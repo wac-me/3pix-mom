@@ -58,7 +58,16 @@ function PostPage() {
           ) : (
             <>
               <div
-                className={`flex h-48 items-end rounded-2xl border-2 border-ink p-6 shadow-flat-sm ${coverClass(post.cover_color)}`}
+                className={`flex h-48 items-end rounded-2xl border-2 border-ink p-6 shadow-flat-sm ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
+                style={
+                  post.cover_image
+                    ? {
+                        backgroundImage: `url(${post.cover_image})`,
+                        backgroundSize: "cover",
+                        backgroundPosition: "center",
+                      }
+                    : undefined
+                }
               >
                 {post.tag && (
                   <span className="rounded-full border-2 border-ink bg-background px-3 py-1 text-xs font-bold text-foreground">
