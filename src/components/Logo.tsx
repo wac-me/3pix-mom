@@ -31,7 +31,6 @@ for (let i = 0; i < SIDES; i++) {
 const polygonPoints = points.map((p) => `${p.x},${p.y}`).join(" ");
 
 export function HeptagonMark({ size = 28, tone = "default" }: { size?: number; tone?: Tone }) {
-  const outline = tone === "light" ? "var(--ink-foreground)" : "var(--ink)";
   return (
     <svg
       width={size}
@@ -53,11 +52,11 @@ export function HeptagonMark({ size = 28, tone = "default" }: { size?: number; t
           strokeWidth={2}
         />
       ))}
-      {/* Border */}
+      {/* Violet outline (black border removed) */}
       <polygon
         points={polygonPoints}
-        stroke={outline}
-        strokeWidth={4}
+        stroke="var(--violet)"
+        strokeWidth={2}
         strokeLinejoin="round"
         fill="none"
       />
