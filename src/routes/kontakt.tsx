@@ -62,7 +62,7 @@ function ContactPage() {
         <div className="mx-auto grid max-w-6xl gap-10 px-4 py-12 md:grid-cols-2">
           <form
             onSubmit={handleSubmit}
-            className="rounded-2xl border-2 border-ink bg-card p-6 shadow-flat-sm"
+            className="rounded-[7px] border-2 border-ink bg-card p-6 shadow-flat-sm"
           >
             <div className="grid gap-4">
               <div className="grid gap-2">
@@ -93,7 +93,7 @@ function ContactPage() {
             {details.map((d) => (
               <div
                 key={d.label}
-                className="flex items-center gap-4 rounded-2xl border-2 border-ink bg-card p-5 shadow-flat-sm"
+                className="flex items-center gap-4 rounded-[7px] border-2 border-ink bg-card p-5 shadow-flat-sm"
               >
                 <div className="flex size-12 items-center justify-center text-foreground">
                   <d.icon className="size-6" />
@@ -104,7 +104,7 @@ function ContactPage() {
                 </div>
               </div>
             ))}
-            <div className="rounded-2xl border-2 border-ink bg-muted p-6 text-foreground shadow-flat-sm">
+            <div className="rounded-[7px] border-2 border-ink bg-muted p-6 text-foreground shadow-flat-sm">
               <h3 className="text-xl font-bold">Godziny pracy</h3>
               <p className="mt-2 text-muted-foreground">
                 Pon – Pt: 9:00 – 18:00

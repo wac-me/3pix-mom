@@ -49,7 +49,7 @@ function LoginPage() {
     <div className="flex min-h-screen flex-col">
       <Navbar />
       <section className="flex flex-1 items-center justify-center bg-muted px-4 py-16">
-        <div className="w-full max-w-md rounded-3xl border-2 border-ink bg-card p-8 shadow-flat">
+        <div className="w-full max-w-md rounded-[7px] border-2 border-ink bg-card p-8 shadow-flat">
           <div className="flex items-center gap-1 text-3xl font-bold">
             <span>3</span>
             <span className="text-foreground">pix</span>
