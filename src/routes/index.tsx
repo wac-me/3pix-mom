@@ -54,8 +54,7 @@ function Index() {
               <Sparkles className="size-4" /> Interaktywna agencja kreatywna
             </span>
             <h1 className="mt-6 text-5xl font-bold leading-[1.05] md:text-6xl">
-              Tworzymy cyfrowe
-              <span className="text-foreground">doświadczenia</span>, które działają.
+              Tworzymy cyfrowe <span className="text-violet">doświadczenia</span>, które działają.
             </h1>
             <p className="mt-5 max-w-md text-lg text-muted-foreground">
               W 3pix łączymy odważny design, czysty kod i ruch. Budujemy marki,
