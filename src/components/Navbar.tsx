@@ -3,7 +3,7 @@ import { useState } from "react";
 import { Menu, X } from "lucide-react";
 import { useAuth } from "@/lib/auth";
 import { Button } from "@/components/ui/button";
-import { Logo } from "@/components/Logo";
+import logoUrl from "@/assets/logo.svg";
 
 const links = [
   { to: "/", label: "Start" },
@@ -25,7 +25,7 @@ export function Navbar() {
     <header className="sticky top-0 z-50 border-b-2 border-ink bg-background/90 backdrop-blur">
       <nav className="mx-auto flex h-16 max-w-6xl items-center justify-between px-4">
         <Link to="/">
-          <Logo className="text-2xl" markSize={28} />
+          <img src={logoUrl} alt="3pix" className="h-8" />
         </Link>
 
         <div className="hidden items-center gap-6 md:flex">

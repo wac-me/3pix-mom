@@ -1,12 +1,12 @@
 import { Link } from "@tanstack/react-router";
-import { Logo } from "@/components/Logo";
+import logoUrl from "@/assets/logo.svg";
 
 export function Footer() {
   return (
     <footer className="border-t-2 border-ink bg-ink text-ink-foreground">
       <div className="mx-auto grid max-w-6xl gap-8 px-4 py-12 sm:grid-cols-2 md:grid-cols-4">
         <div className="sm:col-span-2">
-          <Logo className="text-3xl" markSize={32} tone="light" />
+          <img src={logoUrl} alt="3pix" className="h-10" />
           <p className="mt-3 max-w-xs text-sm text-ink-foreground/70">
             Interaktywna agencja kreatywna. Projektujemy, kodujemy i ożywiamy marki.
           </p>
