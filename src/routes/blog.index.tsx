@@ -49,7 +49,7 @@ function BlogPage() {
           {isLoading ? (
             <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
               {[0, 1, 2, 3, 4, 5].map((i) => (
-                <div key={i} className="h-80 animate-pulse rounded-2xl border-2 border-ink bg-muted" />
+                <div key={i} className="h-80 animate-pulse rounded-[7px] border-2 border-ink bg-muted" />
               ))}
             </div>
           ) : published.length === 0 ? (

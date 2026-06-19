@@ -30,7 +30,7 @@ function EditPostPage() {
           </Button>
           <h1 className="mb-6 text-3xl font-bold">Edytuj wpis</h1>
           {isLoading ? (
-            <div className="h-96 animate-pulse rounded-2xl border-2 border-ink bg-muted" />
+            <div className="h-96 animate-pulse rounded-[7px] border-2 border-ink bg-muted" />
           ) : !post ? (
             <p className="text-muted-foreground">Nie znaleziono wpisu.</p>
           ) : (

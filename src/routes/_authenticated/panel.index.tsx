@@ -83,11 +83,11 @@ function PanelPage() {
           {isLoading ? (
             <div className="space-y-4">
               {[0, 1, 2].map((i) => (
-                <div key={i} className="h-20 animate-pulse rounded-2xl border-2 border-ink bg-muted" />
+                <div key={i} className="h-20 animate-pulse rounded-[7px] border-2 border-ink bg-muted" />
               ))}
             </div>
           ) : all.length === 0 ? (
-            <div className="rounded-2xl border-2 border-ink bg-card p-10 text-center shadow-flat-sm">
+            <div className="rounded-[7px] border-2 border-ink bg-card p-10 text-center shadow-flat-sm">
               <p className="text-lg font-semibold">Brak wpisów.</p>
               <p className="mt-1 text-muted-foreground">Dodaj swój pierwszy wpis.</p>
               <Button asChild variant="hero" className="mt-6">
@@ -101,10 +101,10 @@ function PanelPage() {
               {all.map((post) => (
                 <div
                   key={post.id}
-                  className="flex flex-wrap items-center gap-4 rounded-2xl border-2 border-ink bg-card p-4 shadow-flat-sm"
+                  className="flex flex-wrap items-center gap-4 rounded-[7px] border-2 border-ink bg-card p-4 shadow-flat-sm"
                 >
                   <div
-                    className={`size-14 shrink-0 rounded-xl border-2 border-ink ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
+                    className={`size-14 shrink-0 rounded-[7px] border-2 border-ink ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
                     style={
                       post.cover_image
                         ? { backgroundImage: `url(${post.cover_image})`, backgroundSize: "cover", backgroundPosition: "center" }

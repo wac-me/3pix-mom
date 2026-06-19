@@ -46,7 +46,7 @@ function PostPage() {
               <div className="h-56 animate-pulse rounded-2xl bg-muted" />
             </div>
           ) : !post ? (
-            <div className="rounded-2xl border-2 border-ink bg-card p-8 text-center">
+            <div className="rounded-[7px] border-2 border-ink bg-card p-8 text-center">
               <h1 className="text-2xl font-bold">Nie znaleziono wpisu</h1>
               <p className="mt-2 text-muted-foreground">
                 Ten wpis nie istnieje lub został usunięty.
@@ -58,7 +58,7 @@ function PostPage() {
           ) : (
             <>
               <div
-                className={`flex h-48 items-end rounded-2xl border-2 border-ink p-6 shadow-flat-sm ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
+                className={`flex h-48 items-end rounded-[7px] border-2 border-ink p-6 shadow-flat-sm ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
                 style={
                   post.cover_image
                     ? {

@@ -95,7 +95,7 @@ export function PostEditor({ post }: Props) {
   return (
     <form
       onSubmit={handleSubmit}
-      className="grid gap-5 rounded-2xl border-2 border-ink bg-card p-6 shadow-flat-sm"
+      className="grid gap-5 rounded-[7px] border-2 border-ink bg-card p-6 shadow-flat-sm"
     >
       <div className="grid gap-2">
         <Label htmlFor="title">Tytuł</Label>
@@ -165,7 +165,7 @@ export function PostEditor({ post }: Props) {
           Opcjonalnie wgraj własną bitmapę. Gdy jest ustawiona, zastępuje kolor kafelka.
         </p>
         <div
-          className={`relative flex h-40 items-end overflow-hidden rounded-xl border-2 border-ink p-4 ${
+          className={`relative flex h-40 items-end overflow-hidden rounded-[7px] border-2 border-ink p-4 ${
             coverImage ? "" : coverClass(coverColor)
           }`}
           style={
@@ -220,7 +220,7 @@ export function PostEditor({ post }: Props) {
       </div>
 
 
-      <div className="flex items-center justify-between rounded-xl border-2 border-ink bg-muted px-4 py-3">
+      <div className="flex items-center justify-between rounded-[7px] border-2 border-ink bg-muted px-4 py-3">
         <div>
           <p className="font-semibold">Opublikowany</p>
           <p className="text-sm text-muted-foreground">

@@ -14,7 +14,7 @@ export function BlogCard({ post }: { post: BlogPost }) {
     <Link
       to="/blog/$id"
       params={{ id: post.id }}
-      className="group flex flex-col overflow-hidden rounded-2xl border-2 border-ink bg-card shadow-flat-sm transition-transform hover:-translate-y-1"
+      className="group flex flex-col overflow-hidden rounded-[7px] border-2 border-ink bg-card shadow-flat-sm transition-transform hover:-translate-y-1"
     >
       <div
         className={`relative flex h-44 items-end p-5 ${post.cover_image ? "bg-ink" : coverClass(post.cover_color)}`}
